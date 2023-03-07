@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Main {
     public static void main(String[] args) {
@@ -82,6 +83,25 @@ public class Main {
         for (Double element: doubleList){
             System.out.println(function.apply(element));
         }
+
+        /**
+         * Напишите Supplier, который возвращает случайное число из диапазона от 0 до 100.
+         * Реализуйте его в двух вариантах: через анонимный класс и через лямбду.
+         */
+        Supplier<Integer> supplier = new Supplier<Integer>() {
+            @Override
+            public Integer get() {
+                int a = (int) Math.floor(Math.random()*101);
+                return a;
+            }
+        };
+        System.out.println();
+        System.out.println(supplier.get());
+        System.out.println();
+
+        Supplier<Integer> supplier1 = () -> (int)Math.floor(Math.random()*101);
+        System.out.println(supplier1.get());
+
 
 
 
