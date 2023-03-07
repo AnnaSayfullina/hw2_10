@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Main {
@@ -57,6 +58,32 @@ public class Main {
         for (Person person: personList){
             consumer1.accept(person);
         }
+
+        /**Реализуйте функциональный интерфейс Function, который принимает на вход вещественное число типа
+         Double, а возвращает его округленный вариант типа Long.
+         Реализуйте его в двух вариантах: через анонимный класс и через лямбду.
+         */
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(15.0);
+        doubleList.add(11.5);
+        doubleList.add(16.7);
+        doubleList.add(29.4);
+
+        for (Double element: doubleList){
+            System.out.println(new Function<Double, Long>() {
+                @Override
+                public Long apply(Double aDouble) {
+                    return aDouble.longValue();
+                }
+            }.apply(element));
+        }
+
+        Function<Double, Long> function = d -> d.longValue();
+        for (Double element: doubleList){
+            System.out.println(function.apply(element));
+        }
+
+
 
 
 
