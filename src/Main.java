@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Main {
@@ -32,6 +33,32 @@ public class Main {
                 System.out.println(element);
             }
         }
+
+        /**Создайте функциональный интерфейс Consumer,
+         который принимает на вход имя человека и выводит в консоль приветствие в его адрес.
+         Реализуйте его в двух вариантах: через анонимный класс и через лямбду.
+         */
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person("Михаил"));
+        personList.add(new Person("Анна"));
+        personList.add(new Person("Елена"));
+        personList.add(new Person("Егор"));
+        Consumer<Person> consumer = new Consumer<Person>() {
+            @Override
+            public void accept(Person person) {
+                System.out.println("Добрый день, " + person.getName());
+            }
+        };
+        for (Person person: personList){
+            consumer.accept(person);
+        }
+
+        Consumer<Person> consumer1 = person -> System.out.println("Добрый день, " + person.getName());
+        for (Person person: personList){
+            consumer1.accept(person);
+        }
+
+
 
     }
 }
