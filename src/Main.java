@@ -103,9 +103,29 @@ public class Main {
         System.out.println(supplier1.get());
 
 
+        Predicate <Integer> predicate1 = a -> a >0;
+        Function<Integer, String> function1 = a -> "положительное число " + a;
+        Function<Integer, String> function2 = a -> "отрицательное число " + a;
+        System.out.println(ternaryOperator(predicate1,function1, function2).apply(-5));
+    }
+        /**Теперь попрактикуемся в комбинировании нескольких функций в одну сложную конструкцию.
+         * Для примера построим следующую комбинацию. Дан предикат condition и две функции:
+         ifTrue и ifFalse.
+         Напишите метод ternaryOperator, который из предиката и двух функций построит новую функцию,
+         возвращающую значение функции ifTrue, если предикат выполнен, а в остальных случаях — ifFalse.
+         */
+    public static <T, U> Function<T, U> ternaryOperator(
+            Predicate<? super T> condition,
+            Function<? super T, ? extends U> ifTrue,
+            Function<? super T, ? extends U> ifFalse) {
 
-
-
-
+        Function<T, U> function = t -> {
+            if (condition.test(t)){
+                return ifTrue.apply(t);
+            } else {
+                return ifFalse.apply(t);
+            }
+        };
+        return  function;
     }
 }
